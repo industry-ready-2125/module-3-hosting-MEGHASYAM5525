@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <form onsubmit="return validateLoginForm();">
+            <fieldset>
+                <legend style="text-align: center;">LOGIN PAGE</legend>
+
+                <!-- Username -->
+                <p>
+                    <label>Username:</label><br>
+                    <input type="text" id="username" name="username" style="text-align: center;"
+                        placeholder="Enter your Username">
+                </p>
+
+                <!-- Password -->
+                <p>
+                    <label>Password:</label><br>
+                    <input type="password" id="password" name="password" style="text-align: center;"
+                        placeholder="Enter your Password">
+                </p>
+
+                <button style="width: 200px; margin: 15px auto;" type="submit">Login</button><br>
+
+                Don't have an Account?<br><br><a href="registration.html">Register</a>
+            </fieldset>
+        </form>
+
+        <script>
+            function validateLoginForm() {
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+
+                // Validate username
+                if (username === "") {
+                    alert("Please enter a username");
+                    return false;
+                }
+
+                // Validate password
+                if (password === "") {
+                    alert("Please enter a password");
+                    return false;
+                } else if (password.length < 8) {
+                    alert("Password must be at least 8 characters long");
+                    return false;
+                }
+
+                // If everything is valid, redirect to the new page
+                redirectToNewPage();
+                return false; // Prevents the form from submitting
+            }
+
+            function redirectToNewPage() {
+                window.location.href = "newpage.html";
+                return false;
+            }
+        </script>
+    </div>
+</body>
+</html>

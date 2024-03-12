@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <form onsubmit="return validateRegistrationForm();">
+            <fieldset>
+                <legend style="text-align: center;">REGISTRATION PAGE</legend>
+
+                <!-- Username -->
+                <p>
+                    <label>Username:</label><br>
+                    <input type="text" id="username" name="username" style="text-align: center;"
+                        placeholder="Enter your Username">
+                </p>
+
+                <!-- Email -->
+                <p>
+                    <label>Email:</label><br>
+                    <input type="email" id="email" name="email" style="text-align: center;"
+                        placeholder="Enter your email Address">
+                </p>
+
+                <!-- Phone Number -->
+                <p>
+                    <label>Phone Number:</label><br>
+                    <input type="text" id="phoneNumber" name="phoneNumber" style="text-align: center;"
+                        placeholder="Enter your Phone number">
+                </p>
+
+                <!-- Password -->
+                <p>
+                    <label>Password:</label><br>
+                    <input type="password" id="password" name="password" style="text-align: center;"
+                        placeholder="Enter your Password">
+                </p>
+
+                <!-- Confirm Password -->
+                <p>
+                    <label>Confirm Password:</label><br>
+                    <input type="password" id="confirmPassword" name="confirmPassword" style="text-align: center;"
+                        placeholder="Confirm your Password">
+                </p>
+
+                <!-- Birthday -->
+                <p>
+                    <label for="birthday">Birthday:</label><br>
+                    <input type="date" id="birthday" name="birthday">
+                </p>
+
+                <!-- Address -->
+                <p>
+                    <label>Address:</label><br>
+                    <input type="text" id="address" name="address" style="text-align: center;"
+                        placeholder="Enter your Address">
+                </p>
+
+                <!-- Gender -->
+                <p>
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="female">Female</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                </p>
+
+                <button style="width: 200px; margin: 15px auto;" type="submit">Submit</button><br>
+
+                Already have an Account?<br><br><a href="login.html">Login</a>
+            </fieldset>
+        </form>
+
+        <script>
+            function validateRegistrationForm() {
+                var username = document.getElementById("username").value;
+                var email = document.getElementById("email").value;
+                var phoneNumber = document.getElementById("phoneNumber").value;
+                var password = document.getElementById("password").value;
+                var confirmPassword = document.getElementById("confirmPassword").value;
+
+                // Validate username
+                if (username === "") {
+                    alert("Please enter a username");
+                    return false;
+                }
+
+                // Validate email
+                if (email === "") {
+                    alert("Please enter your email address");
+                    return false;
+                } else if (!isValidEmail(email)) {
+                    alert("Please enter a valid email address");
+                    return false;
+                }
+
+                // Validate phone number (you can add more specific validation)
+                if (phoneNumber === "") {
+                    alert("Please enter your phone number");
+                    return false;
+                }
+
+                // Validate password
+                if (password === "") {
+                    alert("Please enter a password");
+                    return false;
+                } else if (password.length < 8) {
+                    alert("Password must be at least 8 characters long");
+                    return false;
+                }
+
+                // Validate confirmPassword
+                if (confirmPassword === "") {
+                    alert("Please confirm your password");
+                    return false;
+                } else if (confirmPassword !== password) {
+                    alert("Passwords do not match");
+                    return false;
+                }
+
+                // If everything is valid, redirect to the login page
+                redirectToLoginPage();
+                return false; // Prevents the form from submitting
+            }
+
+            function isValidEmail(email) {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            function redirectToLoginPage() {
+                window.location.href = "login.html";
+                return false;
+            }
+        </script>
+    </div>
+</body>
+</html>
